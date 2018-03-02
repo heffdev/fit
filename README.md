@@ -1,2 +1,1 @@
-# Use Case
-- User receives URL with mailing list
+# Just another hodge podge collection of nothingness
