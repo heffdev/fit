@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<head th:replace="common/header :: head"></head>
+	
+	<!-- Add additional custom css here - START -->
+	
+	
+	<!-- Add additional custom css here - END -->
+</head>
+<body>
+	<div th:replace="common/header :: top-navigation">...</div>
+
+	<!-- Add page specific code/html START -->
+	
+	<div class="container">
+
+		<div class="page-header">
+			<h1>Mail Lists available</h1>
+		</div>
+		<p class="lead">
+
+
+    <div th:if="${not #lists.isEmpty(mailinglist)}">
+
+        <table class="table table-striped table-responsive">
+            <tr>
+                <th>Id</th>
+                <th>List Id</th>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>Parent</th>
+                <th></th>
+            </tr>
+            <tr th:each="list : ${mailinglist}">
+                <td th:text="${list.id}">Id</td>
+                <td th:text="${list.listId}">List Id</td>
+                <td th:text="${list.name}">Name</td>
+                <td th:text="${list.owner.username}">Owner</td>
+                <td th:text="${list.parentList == null ? '' : list.parentList.id}">Parent</td>
+                <td><!-- a th:href="${'/maillist/list/' + list.id}">Click here</a-->Join List</td>
+            </tr>
+        </table>
+    </div>
+	   <div th:if="${#lists.isEmpty(mailinglist)}">
+	   <p>No Mailing lists are available. <a th:href="${'/maillist/list/'}">Create a New one</a>.</p>
+	    
+	   </div>    
+
+
+
+
+
+		</p>
+		
+	</div>
+	
+	<!-- Add page specific code/html END -->
+
+	<div th:replace="common/footer :: footer">...</div>
+    
+</body>
+</html>
